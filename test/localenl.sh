@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/sw/bash/bin/bash
 # From arnold@f7.net  Sun Apr 22 20:15:25 2007
 # Date: Thu, 19 Apr 2007 17:09:02 +0300
 # From: Pekka Pessi <Pekka.Pessi@nokia.com>

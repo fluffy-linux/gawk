@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/sw/bash/bin/bash
 
 AWK=${AWK:-../gawk}
 for modifier in h l L j t z

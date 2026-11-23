@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/sw/bash/bin/bash
 
 awk="$AWK -v BINMODE=2"
 SED="sed -e '/^\$/d' -e 's/[ 	][ 	]*/ /g' -e 's/  *\$//'"

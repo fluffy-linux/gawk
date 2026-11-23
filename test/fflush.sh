@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/sw/bash/bin/bash
 ../gawk 'BEGIN{print "1st";fflush("/dev/stdout");print "2nd"|"cat"}'
 
 ../gawk 'BEGIN{print "1st";fflush("/dev/stdout");print "2nd"|"cat"}'|cat

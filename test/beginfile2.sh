@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/sw/bash/bin/bash
 
 # beginfile2.sh --- test BEGINFILE/ENDFILE/getline/nextfile/exit combinations
 
