@@ -24,6 +24,7 @@
  */
 
 #include "awk.h"
+#include <paths.h>
 
 #ifdef HAVE_SYS_PARAM_H
 #undef RE_DUP_MAX	/* avoid spurious conflict w/regex.h */
@@ -2080,7 +2081,7 @@ fork_and_open_slave_pty(const char *slavenam, int master, const char *command, p
 
 		set_sigpipe_to_default();
 
-		execl("/bin/sh", "sh", "-c", command, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", command, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 
 	case -1:
@@ -2132,7 +2133,7 @@ fork_and_open_slave_pty(const char *slavenam, int master, const char *command, p
 
 		signal(SIGPIPE, SIG_DFL);
 
-		execl("/bin/sh", "sh", "-c", command, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", command, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 
 	case -1:
@@ -2471,7 +2472,7 @@ use_pipes:
 			fatal(_("close of pipe failed: %s"), strerror(errno));
 		/* stderr does NOT get dup'ed onto child's stdout */
 		set_sigpipe_to_default();
-		execl("/bin/sh", "sh", "-c", str, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", str, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 	}
 #endif /* NOT __MINGW32__ */
@@ -2719,7 +2720,7 @@ gawk_popen(const char *cmd, struct redirect *rp)
 		if (close(p[0]) == -1 || close(p[1]) == -1)
 			fatal(_("close of pipe failed: %s"), strerror(errno));
 		set_sigpipe_to_default();
-		execl("/bin/sh", "sh", "-c", cmd, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", cmd, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 	}
 #endif /* NOT __MINGW32__ */
@@ -4731,7 +4732,7 @@ gawk_popen_write(const char *cmd)
 			fatal(_("gawk_popen_write: failed to move pipe fd to standard input"));
 		(void) close(pipefds[0]);
 		set_sigpipe_to_default();
-		execl("/bin/sh", "sh", "-c", cmd, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", cmd, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 	} else if (childpid < 0) {
 		(void) close(pipefds[0]);

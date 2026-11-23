@@ -25,6 +25,7 @@
 
 
 #include "awk.h"
+#include <paths.h>
 #if defined(HAVE_FCNTL_H)
 #include <fcntl.h>
 #endif
@@ -3421,7 +3422,7 @@ gawk_system(const char *command)
 		istat = signal(SIGINT, istat);
 		qstat = signal(SIGQUIT, qstat);
 #endif
-		execl("/bin/sh", "sh", "-c", command, NULL);
+		execl(_PATH_BSHELL, "sh", "-c", command, NULL);
 		_exit(errno == ENOENT ? 127 : 126);
 
 		return 0;	// silence compiler warnings
